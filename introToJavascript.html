@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Input Field</title>
+</head>
+<body>
+    <div id="output">What is your name?</div>
+    <input type="text" id="inputField" placeholder="Enter new text">
+    <button onclick="updateText()">Update Text</button>
+    <script>
+        function updateText() {
+            // Step 1: Get the value from the input field
+            const newText = document.getElementById('inputField').value;
+            let result = "<h1>Your name is " + newText + "</h1>";
+            // Step 2: Update the content of the div element
+            document.getElementById('output').innerHTML = result;
+        }
+    </script>
+</body>
+</html>
