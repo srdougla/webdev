@@ -47,7 +47,12 @@
         <p class="invItem">Toys:<br><a id="toyAmt">0</a> toys</p>
     </div>
 
-    
+    <!-- audio tags for animal noises -->
+    <audio id="catSound" src="audio/cat-meow.mp3"></audio>
+    <audio id="snakeSound" src="audio/snake-hiss.mp3"></audio>
+    <audio id="ferretSound" src="audio/ferret-chirp.mp3"></audio>
+    <audio id="turtleSound" src="audio/turtle-squeak.mp3"></audio>
+
 
     <script>
 
@@ -151,16 +156,16 @@
 
                 const batteryImg = document.getElementById("hungerLvl");
                 
-                if (hunger < 3) {
+                if (hunger < 3) hunger++;
+
+                if (hunger === 1) {
                     batteryImg.src = "images/lowbattery.png";
-                } else if (hunger < 7) {
+                } else if (hunger === 2) {
                     batteryImg.src = "images/midbattery.png";
-                } else if (hunger < 10) {
+                } else if (hunger === 3) {
                     batteryImg.src = "images/fullbattery.png";
                 }
-
-                if (hunger < 10) hunger++;
-
+            
             } else {
                 // popup to indicate insufficient inventory
                 showPopup ("You're out of food. Visit the pet store to buy more!");
@@ -181,15 +186,16 @@
 
                 const batteryImg = document.getElementById("happinessLvl");
 
-                if (happiness < 3) {
+                if (happiness < 3) happiness++;
+
+                if (happiness === 1) {
                     batteryImg.src = "images/lowbattery.png";
-                } else if (happiness < 7) {
+                } else if (happiness === 2) {
                     batteryImg.src = "images/midbattery.png";
-                } else if (happiness < 10) {
+                } else if (happiness === 3) {
                     batteryImg.src = "images/fullbattery.png";
                 }
 
-                if (happiness < 10) happiness++;
             } else {
                 //popup to indicate insufficient inventory
                 showPopup ("You're out of treats. Visit the pet store to buy more!");
@@ -198,6 +204,7 @@
         }
 
         function trick() {
+
             if (toys > 0) {
                 toys --;
 
@@ -208,16 +215,34 @@
                 const petReaction = document.getElementById("bigPetImg");
                 petReaction.src = tricks;
 
+                // add audio elements
+                const soundMap = {
+                    'Kasper': 'catSound',
+                    'Susan': 'snakeSound',
+                    'Franklin': 'ferretSound',
+                    'Tucker': 'turtleSound'
+                };
+
+                const soundId = soundMap[petName];
+
+                if (soundId) {
+                    const audio = document.getElementById(soundId);
+                    audio.currentTime = 0; // rewind to start
+                    audio.play();
+                }
+
                 const batteryImg = document.getElementById("boredomLvl");
 
-                if (boredom < 3) {
+                if (boredom < 3) boredom++;
+
+                if (boredom === 1) {
                     batteryImg.src = "images/lowbattery.png";
-                } else if (boredom < 7) {
+                } else if (boredom === 2) {
                     batteryImg.src = "images/midbattery.png";
-                } else if (boredom < 10) {
+                } else if (boredom === 3) {
                     batteryImg.src = "images/fullbattery.png";
                 }
-                if (boredom < 10) boredom++;
+                
 
             } else {
                 // popup to indicate insufficient inventory
