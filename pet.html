@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <link rel="stylesheet" href="style.css">
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Pet</title>
+</head>
+<body>
+    <header class="navbar">
+        <div class="logo-section">
+            <img src="images/pawprint.jpg" alt="Logo" class="logo">
+            <h1>My Virtual Pet</h1>
+        </div>
+
+        <nav class="menu">
+            <a href="index.html">Home</a>
+            <a href="shelter.html">Animal Shelter</a>
+            <a href="pet.html">My Pet</a>
+            <a href="store.html">Pet Store</a>
+        </nav>        
+    </header>
+
+    <h1 style="text-align: center;" id="petNameHeader">Pet Name here</h1>
+
+    <div class="petContainer">
+        <img id="bigPetImg" src="plain" class="mainPetImg">
+
+        <div class="petLevels">
+            <p>Happiness Level:<img id="happinessLvl" src="images/lowbattery.png"></p>
+            <p>Hunger Level: <img id="hungerLvl" src="images/lowbattery.png"></p>
+            <p>Boredom Level: <img id="boredomLvl" src="images/lowbattery.png"></p>
+        </div>
+    </div>
+
+    <div class="petActions">
+        <button class="petAction" onclick="feed()">Feed your pet</button>
+        <button class="petAction" onclick="cuddle()">Cuddle your pet</button>
+        <button class="petAction" onclick="trick()">Do a trick!</button>
+    </div>
+
+    <div id="popup" class="action-popup"></div>
+    
+    <div class="inventory">
+        <p class="invItem">Food:<br><a id="foodAmt">0</a> scoops</p>
+        <p class="invItem">Treats:<br><a id="treatAmt">0</a> treats</p>
+        <p class="invItem">Toys:<br><a id="toyAmt">0</a> toys</p>
+    </div>
+
+    
+
+    <script>
+
+        let plain, eating, lovey, sad, tricks;
+
+        // organize pet photos
+        const catImages = {
+            cPlain: "images/catPlain.png",
+            cEating: "images/catEating.png",
+            cLovey: "images/catLovey.png",
+            cSad: "images/catSad.png",
+            cTricks: "images/catTrick.png"
+        };
+        const turtleImages = {
+            tPlain: "images/turtlePlain.png",
+            tEating: "images/turtleEating.png",
+            tLovey: "images/turtleLovey.png",
+            tSad: "images/turtleSad.png",
+            tTricks: "images/turtleTrick.png"
+        };
+        const ferretImages = {
+            fPlain: "images/ferretPlain.png",
+            fEating: "images/ferretEating.png",
+            fLovey: "images/ferretLovey.png",
+            fSad: "images/ferretSad.png",
+            fTricks: "images/ferretTrick.png"
+        };
+        const snakeImages = {
+            sPlain: "images/snakePlain.png",
+            sEating: "images/snakeEating.png",
+            sLovey: "images/snakeLovey.png",
+            sSad: "images/snakeSad.png",
+            sTricks: "images/snakeTrick.png"
+        };
+        
+
+        if (localStorage.getItem("pet") == "Kasper") {
+            plain = catImages.cPlain;
+            eating = catImages.cEating;
+            lovey = catImages.cLovey;
+            sad = catImages.cSad;
+            tricks = catImages.cTricks;
+        } else if (localStorage.getItem("pet") == "Tucker") {
+            plain = turtleImages.tPlain;
+            eating = turtleImages.tEating;
+            lovey = turtleImages.tLovey;
+            sad = turtleImages.tSad;
+            tricks = turtleImages.tTricks;
+        } else if (localStorage.getItem("pet") == "Franklin") {
+            plain = ferretImages.fPlain;
+            eating = ferretImages.fEating;
+            lovey = ferretImages.fLovey;
+            sad = ferretImages.fSad;
+            tricks = ferretImages.fTricks;
+        } else {
+            plain = snakeImages.sPlain;
+            eating = snakeImages.sEating;
+            lovey = snakeImages.sLovey;
+            sad = snakeImages.sSad;
+            tricks = snakeImages.sTricks;
+        } 
+        // set up inventory amount
+        let food = parseInt(localStorage.getItem("food")) || 0;
+        let treats = parseInt(localStorage.getItem("treats")) || 0;
+        let toys = parseInt(localStorage.getItem("toys")) || 0;
+        
+
+        const foodAmt = localStorage.getItem("food") || 0;
+        document.getElementById("foodAmt").innerText = foodAmt;
+        const treatAmt = localStorage.getItem("treats") || 0;
+        document.getElementById("treatAmt").innerText = treatAmt;
+        const toyAmt = localStorage.getItem("toys") || 0;
+        document.getElementById("toyAmt").innerText = toyAmt;
+
+        let happiness = 0;
+        let hunger = 0;
+        let boredom = 0;
+
+
+        const nullMsg = "You don't have a pet yet! Don't worry. Visit the Animal Shelter to adopt one!";
+        const petName = localStorage.getItem("pet");
+        if (!petName) {
+            document.getElementById("petNameHeader").textContent = nullMsg;
+            document.getElementById("bigPetImg").src = "images/sadpig.jpg";
+        } else {
+            document.getElementById("petNameHeader").textContent = petName;
+            document.getElementById("bigPetImg").src = sad;
+        }
+
+        function feed() {
+
+            if (food > 0) {
+                food--;
+
+                // update storred variable
+                localStorage.setItem("food", food);
+                document.getElementById("foodAmt").innerText = food;
+
+                const petReaction = document.getElementById("bigPetImg");
+                petReaction.src = eating;
+
+                const batteryImg = document.getElementById("hungerLvl");
+                
+                if (hunger < 3) {
+                    batteryImg.src = "images/lowbattery.png";
+                } else if (hunger < 7) {
+                    batteryImg.src = "images/midbattery.png";
+                } else if (hunger < 10) {
+                    batteryImg.src = "images/fullbattery.png";
+                }
+
+                if (hunger < 10) hunger++;
+
+            } else {
+                // popup to indicate insufficient inventory
+                showPopup ("You're out of food. Visit the pet store to buy more!");
+            }
+        }
+
+        function cuddle() {
+
+            if (treats > 0) {
+                treats--;
+
+                // update storred variable
+                localStorage.setItem("treats", treats);
+                document.getElementById("treatAmt").innerText = treats;
+
+                const petReaction = document.getElementById("bigPetImg");
+                petReaction.src = lovey;
+
+                const batteryImg = document.getElementById("happinessLvl");
+
+                if (happiness < 3) {
+                    batteryImg.src = "images/lowbattery.png";
+                } else if (happiness < 7) {
+                    batteryImg.src = "images/midbattery.png";
+                } else if (happiness < 10) {
+                    batteryImg.src = "images/fullbattery.png";
+                }
+
+                if (happiness < 10) happiness++;
+            } else {
+                //popup to indicate insufficient inventory
+                showPopup ("You're out of treats. Visit the pet store to buy more!");
+
+            }
+        }
+
+        function trick() {
+            if (toys > 0) {
+                toys --;
+
+                // update storred variable
+                localStorage.setItem("toys", toys);
+                document.getElementById("toyAmt").innerText = toys;
+
+                const petReaction = document.getElementById("bigPetImg");
+                petReaction.src = tricks;
+
+                const batteryImg = document.getElementById("boredomLvl");
+
+                if (boredom < 3) {
+                    batteryImg.src = "images/lowbattery.png";
+                } else if (boredom < 7) {
+                    batteryImg.src = "images/midbattery.png";
+                } else if (boredom < 10) {
+                    batteryImg.src = "images/fullbattery.png";
+                }
+                if (boredom < 10) boredom++;
+
+            } else {
+                // popup to indicate insufficient inventory
+                showPopup ("You're out of toys. Visit the pet store to buy more!");
+
+            }
+        }
+
+        function showPopup (message) {
+            const popup = document.getElementById("popup");
+            popup.innerText = message;
+            popup.classList.add("show");
+
+            // make it fade away after 3s
+            setTimeout(() => {
+                popup.classList.remove("show");
+            }, 3000);
+
+        }
+
+
+    </script>
+    
+    <footer>
+        <p style="text-align:center; padding:7%"><em>My Virtual Pet.</em> Est. October 2025 by Shannon Douglas.</p>
+    </footer>
+</body>
+</html>
