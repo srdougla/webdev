@@ -103,7 +103,7 @@
         }
 
         // initialize starting balance and variables
-        let balance = parseFloat(localStorage.getItem("balance")) || 50;
+        let balance = parseFloat(localStorage.getItem("balance")) || 80;
         document.getElementById("balance").innerText = `$${balance.toFixed(2)}`;
 
         let food = parseInt(localStorage.getItem("food")) || 0;
