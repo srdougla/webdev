@@ -380,3 +380,160 @@ body {
     visibility: visible;
     opacity: 1;
 }
+
+/* adjust pet.html for mobile screen*/
+@media (max-width: 600px) {
+    .navbar {
+        padding: 10px 15px;
+    }
+
+    .navbar h1 {
+        font-size: 18px; /* shrink the header title */
+    }
+
+    .menu {
+        gap: 10px;
+        font-size: 16px;
+    }
+
+    .menu a {
+            font-size: 14px; /* smaller font for narrow screens */
+            padding: 5px 8px; /* optional: reduce spacing */
+    }
+
+    .logo {
+        width: 40px;
+    }
+    
+    /* Scale down main pet image */
+    .petContainer {
+        flex-direction: column;
+        align-items: center;
+        gap: 20px;
+        padding: 10px;
+    }
+
+    .mainPetImg {
+        width: 80%;
+        height: auto;
+        margin-bottom: 10px;
+    }
+
+    /* Stack pet levels under image */
+    .petLevels {
+        align-items: center;
+        text-align: center;
+        width: 100%;
+    }
+
+    .petLevels p {
+        display: flex;
+        justify-content: space-between;
+        align-items: center; /* vertically align image and text */
+        width: 90%; /* adjust width to fit the screen */
+        margin: 5px auto; /* center container */
+        font-size: 16px;
+    }
+
+    .petLevels img {
+        width: 60px;
+        height: auto;
+    }
+
+    /* Stack action buttons */
+    .petActions {
+        flex-direction: column;
+        gap: 15px;
+        padding: 5%;
+    }
+
+    .petAction {
+        width: 80%;
+        font-size: 18px;
+    }
+
+    /* Inventory items stacked */
+    .inventory {
+        flex-direction: column;
+        gap: 10px;
+        padding: 5%;
+        font-size: 18px;
+    }
+
+    .invItem {
+        width: 90%;
+        font-size: 18px;
+        padding: 10px;
+    }
+
+    .tabs {
+        flex-direction: column;
+        gap: 10px;
+        padding: 5%;
+    }
+
+    .tablinks {
+        width: 90%;
+        font-size: 16px;
+        padding: 8px 0;
+    }
+
+    .productContainer {
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+    }
+
+    .productContainer img {
+        width: 70%;
+        height: auto;
+        border-radius: 8px;
+    }
+
+    .tabcontent img {
+        width: 80%;
+        height: auto;
+    }
+
+    .tabcontent h1 {
+        font-size: 24px;
+        margin-bottom: 10px;
+    }
+
+    .productDetails {
+        width: 100%;
+        font-size: 16px;
+        gap: 8px;
+    }
+
+     .productDetails p {
+        font-size: 16px;  /* smaller price and details */
+    }
+
+    .buyButton {
+        width: 70%;
+        font-size: 16px;
+        height: auto;
+        padding: 8px 0;
+    }
+
+    /* Wallet stacked */
+    .wallet {
+        flex-direction: row;
+        justify-content: space-between;
+        gap: 10px;
+        font-size: 16px;
+        padding: 5%;
+    }
+
+    .wallet h3, .wallet h4 {
+        margin: 0;                /* remove default spacing that causes stacking */
+        font-size: 16px;          /* optionally shrink font for mobile */
+    }
+
+    /* Adjust header */
+    h1#petNameHeader {
+        font-size: 24px;
+        padding: 5px;
+    }
+}
