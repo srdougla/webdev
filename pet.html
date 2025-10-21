@@ -47,6 +47,11 @@
         <p class="invItem">Toys:<br><a id="toyAmt">0</a> toys</p>
     </div>
 
+    <div class="petInfo">
+        <h2>Get to know your pet:</h2>
+        <p id="petBlurb">Go out and adopt your pet!</p>
+    </div>
+
     <!-- audio tags for animal noises -->
     <audio id="catSound" src="audio/cat-meow.mp3"></audio>
     <audio id="snakeSound" src="audio/snake-hiss.mp3"></audio>
@@ -88,38 +93,220 @@
             sTricks: "images/snakeTrick.png"
         };
         
-
+        // assign informative paragraphs and relevant images based on chosen pet
+        let petBlurb = "";
         if (localStorage.getItem("pet") == "Kasper") {
             plain = catImages.cPlain;
             eating = catImages.cEating;
             lovey = catImages.cLovey;
             sad = catImages.cSad;
             tricks = catImages.cTricks;
+            
+            const petBlurb = `
+                <p style="font-size: 1.05rem; line-height: 1.6; color: #333;">
+                    <span style="color: #d16ba5; font-weight: bold; text-shadow: 1px 1px 2px #f3c; font-size: 1.2rem;">House cats</span>, 
+                    or <span style="color: #3948e6; font-style: italic;">domestic cats</span>, have lived alongside humans for 
+                    <span style="color: #009688; text-decoration: underline dotted;">nearly 10,000 years</span>. 
+                    Originally domesticated from wild cats in the Near East, they were valued for their 
+                    <span style="color: #8e44ad; font-weight: bold;">hunting skills</span> 
+                    and ability to keep rodents away from food stores.
+                </p>
+
+                <p style="margin-top: 10px; color: #444;">
+                    Today, cats are beloved for their 
+                    <span style="color: #e67e22; font-weight: bold;">independence</span>, 
+                    <span style="color: #2980b9; font-weight: bold;">curiosity</span>, and 
+                    <span style="color: #16a085; font-weight: bold;">companionship</span>. 
+                    Despite being domesticated, cats still retain many of their wild instincts—like 
+                    <span style="text-decoration: underline wavy #e74c3c;">stalking</span>, 
+                    <span style="text-decoration: underline wavy #9b59b6;">pouncing</span>, 
+                    and “hunting” toys or moving shadows. 
+                </p>
+
+                <p style="margin-top: 10px; color: #333;">
+                    They also communicate in complex ways: a cat’s <span style="color: #960e3c;">meow</span> is used mainly to talk 
+                    to humans, not other cats, and each sound or pitch can signal different needs, such as 
+                    <span style="color: #27ae60;">hunger</span>, <span style="color: #c0392b;">playfulness</span>, 
+                    or <span style="color: #8e44ad;">affection</span>. 
+                </p>
+
+                <p style="margin-top: 10px; color: #2c3e50;">
+                    Physically, cats are built for <span style="font-weight: bold; color: #1abc9c;">agility</span> and 
+                    <span style="font-weight: bold; color: #3498db;">precision</span>. 
+                    Their <span style="color: #d35400;">flexible spines</span>, 
+                    powerful back legs, and retractable claws make them expert climbers and hunters. 
+                    They can jump up to <span style="font-weight: bold; color: #06520c;">six times</span> their body length in one leap 
+                    and land gracefully thanks to a specialized inner ear system that helps them balance.
+                </p>
+
+                <p style="margin-top: 10px; color: #555;">
+                    Cats also have excellent <span style="color: #9b59b6;">night vision</span>—about 
+                    <span style="font-weight: bold; color: #06520c;">six times better</span> than humans—and a strong sense of hearing 
+                    that allows them to detect even the faintest rustle of prey. 
+                    Interestingly, cats spend up to <span style="font-weight: bold; color: #2980b9;">16 hours a day sleeping</span> 
+                    to conserve energy, and when they do wake up, they often engage in 
+                    <span style="color: #e67e22;">grooming</span>, which helps regulate body temperature and strengthen social bonds 
+                    with other cats or their owners.
+                </p>
+                `;
+                document.querySelector(".petInfo").innerHTML = petBlurb;
+
+
         } else if (localStorage.getItem("pet") == "Tucker") {
             plain = turtleImages.tPlain;
             eating = turtleImages.tEating;
             lovey = turtleImages.tLovey;
             sad = turtleImages.tSad;
             tricks = turtleImages.tTricks;
+
+            const petBlurb = `
+            <p style="color: #2e2a1f; line-height: 1.7;">
+                <strong style="color: #2c5530; text-decoration: underline;">Turtles</strong> are among the 
+                oldest creatures on Earth, having existed for more than 
+                <span style="color: #8b4513; font-weight: bold;">200 million years</span>—long before mammals 
+                or birds. Their most recognizable feature is their 
+                <span style="color: #3b3b3b; font-style: italic;">shell</span>, which is actually part of 
+                their skeleton. The top part, called the 
+                <span style="color: #2e8b57;">carapace</span>, and the bottom, known as the 
+                <span style="color: #2e8b57;">plastron</span>, are made of bone and covered in 
+                <span style="color: #8b0000; text-decoration: underline dotted;">scutes</span>—hard, protective 
+                scales made of keratin (the same material as human fingernails).
+            </p>
+
+            <p style="color: #3a2f17;">
+                Turtles can’t leave their shells, as their 
+                <span style="color: #483c32;">ribcage and spine</span> are fused to it, but they can retract 
+                their heads and limbs inside for protection. There are more than 
+                <strong style="color: #4b5320;">300 species</strong> of turtles, and they live in a wide range 
+                of environments—from <span style="color: #a0522d;">deserts</span> to 
+                <span style="color: #1e90ff;">deep oceans</span>. 
+                Aquatic turtles, like sea turtles, are powerful swimmers with 
+                <span style="color: #0f4c75;">flippers</span>, while land-dwelling tortoises have 
+                <span style="color: #704214;">sturdy legs</span> designed for walking.
+            </p>
+
+            <p style="color: #2f2f2f;">
+                Turtles are <strong style="color: #006400;">cold-blooded</strong>, meaning their body temperature 
+                depends on their environment, which is why they often bask in the sun to warm up. Some species, 
+                like the <span style="color: #556b2f; font-weight: bold;">painted turtle</span>, can even 
+                <em style="color: #8b0000;">survive months without oxygen</em> during winter hibernation by 
+                slowing their metabolism to almost zero. Depending on the species, turtles can live for 
+                <span style="color: #654321; text-decoration: underline;">decades or even centuries</span>—
+                some <span style="color: #4b0082;">giant tortoises</span> have lived more than 
+                <strong style="color: #8b4513;">150 years</strong>.
+            </p>
+            `;
+
+            // Insert the paragraph into your webpage
+            document.querySelector(".petInfo").innerHTML = petBlurb;
+
         } else if (localStorage.getItem("pet") == "Franklin") {
             plain = ferretImages.fPlain;
             eating = ferretImages.fEating;
             lovey = ferretImages.fLovey;
             sad = ferretImages.fSad;
             tricks = ferretImages.fTricks;
+
+            const petBlurb = `
+            <p style="line-height: 1.7; color: #2c2c2c;">
+                <strong style="color: #6b4226; text-decoration: underline;">Ferrets</strong> are lively, playful members 
+                of the weasel family (<span style="color: #4b0082; font-weight: bold;">Mustelidae</span>) and have been 
+                domesticated for over <span style="color: #8b0000; font-weight: bold;">2,000 years</span>. They were originally 
+                used by humans for <span style="color: #2e8b57; font-style: italic;">hunting</span>—especially to chase 
+                <span style="color: #8b4513; text-decoration: underline dotted;">rabbits</span> and rodents out of burrows, 
+                a practice called <em style="color: #d35400;">“ferreting”</em>.
+                </p>
+
+                <p style="color: #3a2f17; margin-top: 10px;">
+                Ferrets have long, <span style="color: #556b2f; font-weight: bold;">flexible bodies</span> and 
+                short legs, which make them excellent at navigating <span style="color: #1e90ff;">tight tunnels</span> 
+                and hiding spots. They’re known for their <span style="color: #c0392b; font-weight: bold;">mischievous behavior</span>, 
+                <span style="color: #2980b9; font-weight: bold;">curiosity</span>, and love of exploration. When excited, 
+                they often perform a bouncy, chaotic movement called the 
+                <span style="color: #8e44ad; text-decoration: underline;">“weasel war dance”</span>, which is both a display 
+                of joy and an invitation to play.
+                </p>
+
+                <p style="color: #2f2f2f; margin-top: 10px;">
+                Ferrets are <strong style="color: #006400;">crepuscular</strong>, meaning they’re most active during 
+                dawn and dusk, and they sleep for up to <span style="color: #f39c12; font-weight: bold;">18 hours a day</span>. 
+                They communicate using a variety of vocalizations like 
+                <span style="color: #d35400; font-style: italic;">“dooking”</span> (a clucking sound when they’re happy) 
+                or <span style="color: #8b0000;">hissing</span> when they’re annoyed.
+                </p>
+
+                <p style="color: #3b3b3b; margin-top: 10px;">
+                Ferrets also have a habit of <span style="color: #8e44ad; text-decoration: underline;">stealing and hiding objects</span>—
+                sometimes shiny items, keys, or small toys—which has earned them a reputation as 
+                <span style="color: #c0392b; font-weight: bold;">little thieves</span>. Despite their playful nature, 
+                ferrets require plenty of <span style="color: #2e8b57; font-weight: bold;">stimulation, exercise</span>, 
+                and <span style="color: #2980b9; font-weight: bold;">social interaction</span> to stay healthy. With proper care, 
+                they can live around <span style="color: #654321; font-weight: bold;">6 to 10 years</span> and make 
+                affectionate, entertaining pets.
+            </p>
+            `;
+
+            document.querySelector(".petInfo").innerHTML = petBlurb;
+
         } else {
             plain = snakeImages.sPlain;
             eating = snakeImages.sEating;
             lovey = snakeImages.sLovey;
             sad = snakeImages.sSad;
             tricks = snakeImages.sTricks;
+
+            petBlurb = `
+            <p style="line-height: 1.7; color: #2c2c2c;">
+                <strong style="color: #006400; text-decoration: underline;">Snakes</strong> are some of the most diverse 
+                and misunderstood creatures on the planet, with over 
+                <span style="color: #8b0000; font-weight: bold;">3,000 known species</span> ranging from a few inches 
+                to more than <span style="color: #4b0082; font-weight: bold;">30 feet long</span>.
+                </p>
+
+                <p style="color: #3a2f17; margin-top: 10px;">
+                They are legless reptiles that move using a combination of 
+                <span style="color: #2e8b57; font-style: italic;">muscle contractions</span> and specialized 
+                <span style="color: #556b2f; text-decoration: underline;">belly scales</span>, allowing them to slither 
+                smoothly over various surfaces. Despite lacking eyelids and external ears, snakes have keen senses—especially 
+                their ability to detect <span style="color: #8b4513; font-weight: bold;">vibrations</span> and “smell” using 
+                their <span style="color: #c0392b; font-style: italic;">tongues</span>.
+                </p>
+
+                <p style="color: #2f2f2f; margin-top: 10px;">
+                When a snake flicks its tongue, it collects scent particles and transfers them to an organ in the roof of its mouth 
+                called the <span style="color: #8e44ad; font-weight: bold; text-decoration: underline;">Jacobson’s organ</span>, 
+                helping it locate prey or sense danger. Snakes play an essential role in ecosystems by controlling 
+                <span style="color: #d35400; font-weight: bold;">pest populations</span> and serving as both 
+                <span style="color: #006400; font-weight: bold;">predators</span> and <span style="color: #006400; font-weight: bold;">prey</span>.
+                </p>
+
+                <p style="color: #3b3b3b; margin-top: 10px;">
+                Depending on the species, they may hunt through <span style="color: #2e8b57; font-weight: bold;">constriction</span>, 
+                like boas and pythons, or by injecting <span style="color: #8b0000; font-weight: bold;">venom</span>, 
+                like cobras and vipers. Venomous snakes use their toxins not only to immobilize prey but also to begin digesting it 
+                before swallowing. Since snakes don’t chew, they rely on extremely <span style="color: #4b0082; font-style: italic;">flexible jaws</span> 
+                to consume animals much larger than their heads, stretching their skin and bones in remarkable ways.
+                </p>
+
+                <p style="color: #2f2f2f; margin-top: 10px;">
+                Snakes also shed their skin several times a year in a process called 
+                <span style="color: #8e44ad; text-decoration: underline;">ecdysis</span>, which helps them grow and remove parasites. 
+                Far from being dangerous to humans in most cases, snakes are vital to maintaining 
+                <span style="color: #006400; font-weight: bold;">healthy environments</span> and are fascinating examples 
+                of <span style="color: #c0392b; font-style: italic;">evolutionary adaptation</span>.
+            </p>
+            `;
+
+            // Insert the paragraph into your webpage
+            document.querySelector(".petInfo").innerHTML = petBlurb;
+        
         } 
+
         // set up inventory amount
         let food = parseInt(localStorage.getItem("food")) || 0;
         let treats = parseInt(localStorage.getItem("treats")) || 0;
         let toys = parseInt(localStorage.getItem("toys")) || 0;
         
-
         const foodAmt = localStorage.getItem("food") || 0;
         document.getElementById("foodAmt").innerText = foodAmt;
         const treatAmt = localStorage.getItem("treats") || 0;
@@ -140,6 +327,7 @@
         } else {
             document.getElementById("petNameHeader").textContent = petName;
             document.getElementById("bigPetImg").src = sad;
+            document.getElementById("petBlurb").innerHTML = petBlurb;
         }
 
         function feed() {

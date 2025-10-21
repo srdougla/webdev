@@ -8,7 +8,7 @@
 ---
 
 ## Project Overview
-*My Virtual Pet* is an interactive web application that allows users to adopt and care for a virtual pet. Users can feed, cuddle, and play with their pet while managing resources like food, treats, and toys. The project demonstrates responsive design, interactive UI elements, and multimedia integration (audio for pet reactions). The site is fully functional on both desktop and mobile devices.
+*My Virtual Pet* is an interactive web application that allows users to adopt and care for a virtual pet. It also educates them about pet care, different types of animals, habitats and environments, and fun facts on the pet they adopt. There is a link to an informative website as well. Users can feed, cuddle, and play with their pet while managing resources like food, treats, and toys. The project demonstrates responsive design, interactive UI elements, and multimedia integration (audio for pet reactions). The site is fully functional on both desktop and mobile devices.
 
 ---
 
